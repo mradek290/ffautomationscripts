@@ -1,0 +1,40 @@
+Dokumentation bzgl. Scripts zur Bereinigung obsoleter Logdateien auf Exchange Servern
+
+1. Ausführung
+Dieses Script kann einfach als Datto Komponente angelegt werden und dann 
+einfach auf den gewünschten Server ausgeführt werden.
+
+Im Script gibt es eine Variable $days welche angibt wie alt eine Datei
+sein muss um gelöscht zu werden. Diese ist standardmäßig auf 0 gesetzt
+was bedeutet, dass alle Logdateien gelöscht werden.
+Es bietet sich an diese Variable in die Datto Komponente zu integrieren.
+
+2. Ausgaben und Fehlermeldungen
+Sollte das Script den Installationspfad des Exchange Servers nicht
+finden können wird die Fehlermeldung
+"Windows exchange server not installed." nach StdErr ausgegeben und
+die Ausführung abgebrochen.
+
+Weitere Fehlermeldungen können auftreten, wenn eine Datei nicht gelöscht
+werden kann. Dieß liegt meist daran das diese Datei gerade geschrieben wird.
+Diese Fehlermeldung wird auch nahc StdErr ausgegeben, ist jedoch zu
+ignorieren.
+
+Sollte ein Pfad unerwartender weise nicht gefunden werden können, so wird
+dafür eine Meldung in StdOut ausgegeben welche auf diesen Pfad verweist.
+
+Bei reibungslosem Ablauf sollten in StdOut nur ausgegeben werden, wieviele
+Dateien aus einem Pfad gelöscht wurden und wieviel Speicherplatz dadurch
+frei geworden ist.
+
+3. Details zum Script
+Das Script definiert zunächst einige Variablen:
+Auf $days wurde bereits in Abschnitt 1 eingeganen
+$regentry definiert den Registry schlüssel, welcher Informationen über die
+Exchange Server Installation enthält.
+
+$IISLogPath, $ExchangeLoggingPath, $ETLLoggingPath, $ETLLoggingPath2 und
+$ETLLoggingPath3 definieren die zu prüfenden Pfade welche die Logdateien
+enthalten. Diese werden vom Script automatisch gesetzt.
+Unter den jeweiling Variablendefinitionen befinden sich die alten
+Standardwerte

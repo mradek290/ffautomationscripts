@@ -1,0 +1,29 @@
+Dokumentation bzgl. Scripts zur automatischen installation des Lenovo Update Agents
+
+1. Ausführung
+Dieses Script kann einfach als Datto Komponente angelegt und auf Dieses
+gewünschten Geräte ausgerollt werden.
+Es ist keine weitere konfiguration notwendig.
+
+2. Ausgaben und Fehlermeldungen
+Bedingt durch die installation der 3rd Party Komponente Chocolatey
+wird erst deren installationsprozess protokolliert. Dies verursacht
+einige Ausgaben nach StdOut.
+
+Die letzte Ausgabe nach StdOut gibt an ob die Installation bzw.
+das Update erfolgreich war oder nicht.
+
+3. Details zum Script
+Zunächst definiert das Script die variablen $version_key und $choco_url
+welche auf den Registry Eintrag für die derzeitige Version des Lenovo
+Agents verweist und einen URL der zu einem Installations script für die
+aktuellste Version von Chocolatey führt.
+Sollte es in Zunkunft neuerungen geben, so müssten diese Einträge angepasst
+werden. Siehe dazu:
+https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/using-chocolatey-with-powershell
+https://chocolatey.org/packages/lenovo-thinkvantage-system-update
+
+Dann wird das Installations Script für Chocolatey heruntergeladen
+und ausgeführt. Diese Installation nimmt ca. 15mb in Anspruch.
+Danach wird wird der Lenovo Agent mittels Chocolatey installiert bzw.
+upgedated.
